@@ -1,6 +1,7 @@
 'use strict'
 
-const bl      = require('bl')
+const assert  = require('assert')
+    , bl      = require('bl')
     , gitexec = require('./')
 
 
@@ -12,4 +13,15 @@ gitexec.exec(__dirname, 'git log --format=\'%H %cd\'')
     data = data.toString()
 
     console.log('------------------\n', data, '------------------------')
+    let commits = data.split(/[\r\n]+/).filter(Boolean)
+    assert.equal('4525f40007bd7200d2a6c8d1e4b742f3567e83c3 Mon Dec 14 21:34:07 2015 +1100', commits[commits.length - 1])
   }))
+
+gitexec.exec(__dirname, 'git log --format=\'%H %cd\'', (err, data) => {
+  if (err)
+    throw err
+
+  console.log('------------------\n', data, '------------------------')
+  let commits = data.split(/[\r\n]+/).filter(Boolean)
+  assert.equal('4525f40007bd7200d2a6c8d1e4b742f3567e83c3 Mon Dec 14 21:34:07 2015 +1100', commits[commits.length - 1])
+})
