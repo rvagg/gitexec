@@ -1,0 +1,14 @@
+{
+  "name": "gitexec",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gitexec.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rod <rod@vagg.org> (http://r.va.gg/)",
+  "license": "MIT",
+  "dependencies": {
+    "bl": "~1.0.0"
+  }
+}
