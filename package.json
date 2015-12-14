@@ -1,13 +1,17 @@
 {
   "name": "gitexec",
   "version": "1.0.0",
-  "description": "",
+  "description": "A specialised child process spawn for `git` commands",
   "main": "gitexec.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "author": "Rod <rod@vagg.org> (http://r.va.gg/)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rvagg/gitexec.git"
+  },
   "dependencies": {
     "bl": "~1.0.0"
   }
