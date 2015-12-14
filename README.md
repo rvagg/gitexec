@@ -5,6 +5,8 @@ gitexec
 
 _Compatible with Node.js v4+_
 
+Note: while there's nothing currently preventing this from being used to execute arbitrary bash commands, be warned that it's use is focused on git and the API may evolve to be more specific into the future. You're welcome to fork or copy the patterns used if you need similar functionality for other uses.
+
 ## API
 
 ### `gitexec.exec(repoPath, gitCommand)`
