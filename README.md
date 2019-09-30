@@ -1,5 +1,4 @@
-gitexec
-=======
+# gitexec [![Build Status](https://github.com/rvagg/gitexec/workflows/Tests/badge.svg)](https://github.com/rvagg/gitexec/actions)
 
 **A specialised child process spawn for `git` commands**
 
