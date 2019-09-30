@@ -14,5 +14,8 @@
   },
   "dependencies": {
     "bl": "~1.0.0"
-  }
+  },
+  "files": [
+    "gitexec.js"
+  ]
 }
