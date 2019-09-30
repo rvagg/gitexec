@@ -14,9 +14,9 @@
     "url": "https://github.com/rvagg/gitexec.git"
   },
   "dependencies": {
-    "bl": "~1.0.0"
+    "bl": "^4.0.0"
   },
   "devDependencies": {
-    "standard": "~14.3.1"
+    "standard": "^14.3.1"
   }
 }

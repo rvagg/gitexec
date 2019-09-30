@@ -1,22 +1,29 @@
 'use strict'
 
-const spawn = require('child_process').spawn
-const bl = require('bl')
+const { spawn } = require('child_process')
+const { BufferListStream } = require('bl')
 
 function exec (repoPath, gitcmd) {
   const child = spawn(gitcmd, { env: process.env, cwd: repoPath, shell: true })
 
-  child.stderr.pipe(bl((err, _data) => {
-    if (err) { return child.stdout.emit('error', err) }
+  child.stderr.pipe(BufferListStream((err, data) => {
+    if (err) {
+      return child.stdout.emit('error', err)
+    }
 
-    if (_data.length) { process.stderr.write(_data) }
+    if (data.length) {
+      process.stderr.write(data)
+    }
   }))
 
   child.on('close', (code) => {
-    if (!code) { return }
+    if (!code) {
+      return
+    }
+
     child.stdout.emit(
-      'error'
-      , new Error('git command [' + gitcmd + '] exited with code ' + code)
+      'error',
+      new Error(`git command [${gitcmd}] exited with code ${code}`)
     )
   })
 
@@ -24,10 +31,12 @@ function exec (repoPath, gitcmd) {
 }
 
 function execCollect (repoPath, gitcmd, callback) {
-  exec(repoPath, gitcmd).pipe(bl((err, _data) => {
-    if (err) { return callback(err) }
+  exec(repoPath, gitcmd).pipe(BufferListStream((err, data) => {
+    if (err) {
+      return callback(err)
+    }
 
-    callback(null, _data.toString())
+    callback(null, data.toString())
   }))
 }
 
