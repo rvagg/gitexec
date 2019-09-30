@@ -4,7 +4,8 @@
   "description": "A specialised child process spawn for `git` commands",
   "main": "gitexec.js",
   "scripts": {
-    "test": "node test.js"
+    "lint": "standard *.js",
+    "test": "npm run lint && node test.js"
   },
   "author": "Rod <rod@vagg.org> (http://r.va.gg/)",
   "license": "MIT",
@@ -14,5 +15,8 @@
   },
   "dependencies": {
     "bl": "~1.0.0"
+  },
+  "devDependencies": {
+    "standard": "~14.3.1"
   }
 }
