@@ -4,7 +4,7 @@ const spawn = require('child_process').spawn
 const bl = require('bl')
 
 function exec (repoPath, gitcmd) {
-  const child = spawn('bash', ['-c', gitcmd], { env: process.env, cwd: repoPath })
+  const child = spawn(gitcmd, { env: process.env, cwd: repoPath, shell: true })
 
   child.stderr.pipe(bl((err, _data) => {
     if (err) { return child.stdout.emit('error', err) }
