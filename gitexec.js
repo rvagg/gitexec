@@ -4,7 +4,7 @@ const { spawn } = require('child_process')
 const { BufferListStream } = require('bl')
 
 function exec (repoPath, gitcmd) {
-  const child = spawn(gitcmd, { env: process.env, cwd: repoPath, shell: true })
+  const child = spawn('bash', ['-c', gitcmd], { env: process.env, cwd: repoPath })
 
   child.stderr.pipe(BufferListStream((err, data) => {
     if (err) {
