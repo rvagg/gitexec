@@ -2,9 +2,11 @@
 
 const { spawn } = require('child_process')
 const { BufferListStream } = require('bl')
+const { PassThrough } = require('stream')
 
 function exec (repoPath, gitcmd) {
   const child = spawn(gitcmd, { env: process.env, cwd: repoPath, shell: true })
+  const pt = new PassThrough()
 
   child.stderr.pipe(BufferListStream((err, data) => {
     if (err) {
@@ -17,17 +19,16 @@ function exec (repoPath, gitcmd) {
   }))
 
   child.on('close', (code) => {
-    if (!code) {
-      return
+    if (code) {
+      pt.emit(
+        'error',
+        new Error(`git command [${gitcmd}] exited with code ${code}`)
+      )
     }
-
-    child.stdout.emit(
-      'error',
-      new Error(`git command [${gitcmd}] exited with code ${code}`)
-    )
+    pt.end()
   })
 
-  return child.stdout
+  return child.stdout.pipe(pt, { end: false })
 }
 
 function execCollect (repoPath, gitcmd, callback) {
