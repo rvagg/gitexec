@@ -1,6 +1,6 @@
 {
   "name": "gitexec",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A specialised child process spawn for `git` commands",
   "main": "gitexec.js",
   "scripts": {
